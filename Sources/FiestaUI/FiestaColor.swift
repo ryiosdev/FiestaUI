@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  FiestaColor.swift
 //  
 //
 //  Created by Ryan Young on 9/19/23.
@@ -10,12 +10,25 @@ import UIKit
 import SwiftUI
 
 /// An enumeration of hex color strings that belong the Fiesta Theme. 
-public enum FiestaColors: String {
-    case white = "#ffffff00"
-    case black = "#00000000"
-    case yellow = "#fcd20200"
-    case red = "#dc291e00"
-    case teal = "#1cb0d400"
+public enum FiestaColor: String {
+    ///
+    case white =  "#ffffff"
+    case black =  "#000000"
+    case yellow = "#fcd202"
+    case red =    "#dc291e"
+    case teal =   "#1cb0d4"
+    case blue =   "#3c98df"
+}
+
+public extension Color {
+    /// A helper method to quickly add a FiestaColor to a SwiftUI Views
+    ///
+    /// This allow quick auto complete in Xcode, apposed to having to type out the full path like `FiestaColor.blue.color()`
+    /// - Parameter color: The FiestaColor to convert to a Color struct
+    /// - Returns: A Color struct representing the FiestaColor
+    static func fiesta(_ color: FiestaColor) -> Color {
+        return color.color()
+    }
 }
 
 /// String Extension to convert hex strings like "#dc291e00" to UIColor or SwiftUI Color equivalent.
@@ -28,7 +41,7 @@ public extension RawRepresentable where RawValue == String {
 
     /// Returns a UIColor object for the string's hex value.
     func uiColor() -> UIColor {
-        return UIColor(red: self.red(), green: self.green(), blue: self.blue(), alpha: self.alpha())
+        return UIColor(red: self.red(), green: self.green(), blue: self.blue(), alpha: 0.0)
     }
     
     private func toUInt() -> UInt64 {
@@ -53,9 +66,6 @@ public extension RawRepresentable where RawValue == String {
     private func blue() -> CGFloat {
         let bitPosition = 8
         return CGFloat((self.toUInt() & (0xff << bitPosition)) >> bitPosition)  / 255.0
-    }
-    private func alpha() -> CGFloat {
-        return CGFloat(self.toUInt() & 0xff) / 255.0
     }
 }
 

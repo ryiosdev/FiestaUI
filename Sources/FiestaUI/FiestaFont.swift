@@ -9,5 +9,6 @@ import SwiftUI
 
 /// An struct that features fonts that belong the Fiesta Theme.
 public struct FiestaFont {
-    static let fiesta = Font.custom("Fiesta", size: 18)
+    static let fiesta10 = Font.custom("Fiesta", size: 10)
+    static let fiesta18 = Font.custom("Fiesta", size: 18)
 }

@@ -10,11 +10,18 @@ import SwiftUI
 /// Theme Protocol contains all of the properties needed to implement a custom theme.
 public protocol Theme {
     
-    var colorBackground: Color { get }
-    var colorText: Color { get }
-    var colorBorder: Color { get }
-    var colorAccent: Color { get }
-    
+    var colorBackgroundButton: Color { get }
+    var colorBackgroundButtonSecondary: Color { get }
+    var colorBackgroundButtonDestructive: Color { get }
+
+    var colorTextButton: Color { get }
+    var colorTextButtonSecondary: Color { get }
+    var colorTextButtonDestructive: Color { get }
+
+    var colorBorderButton: Color { get }
+    var colorBorderButtonSecondary: Color { get }
+    var colorBorderButtonDestructive: Color { get }
+
     var fontButton: Font { get }
     
     var padding: CGFloat { get }
