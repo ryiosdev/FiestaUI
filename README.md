@@ -6,6 +6,8 @@ A SwiftUI Component Library with a Texas Flare
 1. Import this swift package into your app.
 1. Call the `FiestaUI.loadFonts()` at app launch similar to this
 ```swift
+import FiestaUI
+...
 @main
 struct FiestaSampleAppApp: App {
     init() {
@@ -15,6 +17,8 @@ struct FiestaSampleAppApp: App {
 ```
 1. Apply the `FiestaButtonStyle` to your SwiftUI Buttons
 ```swift
+import FiestaUI
+...
 Button("Fiesta") {
     action()
 }
