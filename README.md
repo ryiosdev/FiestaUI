@@ -24,6 +24,7 @@ Button("Fiesta") {
 
 ### Internal Festa Sample App
 Bundled inside FiestaUI swift package is a sample app named `FiestaSampleApp`. You can use this app to see the FiestaUI library in action.
+You can get to it by right clicking on the package in Xcode and select "Show in Finder".
 
 ## Documentation
 The code is documented mainly conforming to the [Swift DocC](https://developer.apple.com/documentation/docc) format.
