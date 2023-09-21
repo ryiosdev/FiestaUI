@@ -3,23 +3,19 @@ import SwiftUI
 
 public struct FiestaTheme: Theme {
     
-    public var colorBackgroundButton: Color {
-        get {
-            .fiesta(.blue)
-        }
-    }
+    public var colorBackgroundButton: Color { Color.fiesta(FiestaColor.blue) }
     public var colorBackgroundButtonSecondary = Color.white
     public var colorBackgroundButtonDestructive = Color.white
     
-    public var colorTextButton = Color.white
+    public var colorTextButton: Color { Color.fiesta(.white) }
     public var colorTextButtonSecondary = Color.blue
     public var colorTextButtonDestructive = Color.red
     
-    public var colorBorderButton = Color.black
+    public var colorBorderButton: Color { Color.fiesta(.black) }
     public var colorBorderButtonSecondary = Color.blue
     public var colorBorderButtonDestructive = Color.red
 
-    public var fontButton = FiestaFont.fiesta10
+    public var fontButton = FiestaFont.fiesta18
     
     public var padding = CGFloat(8.0)
     
