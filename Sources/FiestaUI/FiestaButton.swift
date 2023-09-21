@@ -21,15 +21,15 @@ public struct FiestButtonStyle: ButtonStyle {
             backgroundColor = theme.colorBackgroundButtonSecondary
             forgroundColor = theme.colorTextButtonSecondary
             borderColor = theme.colorBorderButtonSecondary
-            
+
         } else if configuration.role == .destructive {
             backgroundColor = theme.colorBackgroundButtonDestructive
             forgroundColor = theme.colorTextButtonDestructive
             borderColor = theme.colorBorderButtonDestructive
         }
         
-        let borderStroke = configuration.isPressed ? StrokeStyle(lineWidth: 1, dash: [1]) : StrokeStyle()
-        
+        let borderStroke = configuration.isPressed ? StrokeStyle(lineWidth: 2, dash: [2]) : StrokeStyle()
+
         return configuration.label
             .padding(theme.padding)
             .font(theme.fontButton)
@@ -55,20 +55,19 @@ struct FiestaButton_Previews: PreviewProvider {
     static var previews: some View {
         FiestaUI.loadFonts()
         return Group {
-            Button("The Quick Brown Fox") { action() }
+            Button("Basic") { }
                 .buttonStyle(FiestButtonStyle())
+            
+            Button(action: {}) {
+                Label("Label", systemImage: "party.popper")
+            }.fiestaStyle()
 
-            Button("Jumps Over", role: .cancel) { action() }
+            Button("Cancel", role: .cancel) { }
                 .fiestaStyle()
             
-            Button("The Lazy Dog", role: .destructive) { action() }
+            Button("Delete", role: .destructive) { }
                 .fiestaStyle()
 
         }.previewLayout(.sizeThatFits)
-    }
-    
-    static func action() {
-        print("hello world!")
-
     }
 }
