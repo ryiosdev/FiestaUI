@@ -12,6 +12,9 @@ import SwiftUI
 /// An enumeration of hex color strings that belong the Fiesta Theme.
 public enum FiestaColor: String {
     
+    // NOTE: An alternative option for a list of "theme colors" is using an Asset Catalog with "Color Sets" which support light/dark mode.
+    // I did not use that here because, I simply forgot that was a thing 😅 and ran with this instead.
+    
     /// pure black (#000000)
     case black = "#000000"
     
