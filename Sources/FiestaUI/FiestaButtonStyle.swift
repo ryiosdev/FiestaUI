@@ -14,10 +14,10 @@ import SwiftUI
 /// Sample usage:
 ///  ```swift
 ///Button("Basic") { }
-///    .buttonStyle(FiestButtonStyle())
+///    .buttonStyle(FiestaButtonStyle())
 ///
 ///Button(action: {}) {
-///    Label("Lable", systemImage: "party.popper")
+///    Label("Label", systemImage: "party.popper")
 ///}.fiestaStyle()
 ///
 ///Button("Cancel", role: .cancel) { }
@@ -43,31 +43,31 @@ public struct FiestaButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         // Apply Default styling
         var backgroundColor = theme.colorBackgroundButton
-        var forgroundColor = theme.colorTextButton
+        var foregroundColor = theme.colorTextButton
         var borderColor = theme.colorBorderButton
         
         // If the button has a role specified, adjust the styling
         if configuration.role == .cancel {
             backgroundColor = theme.colorBackgroundButtonSecondary
-            forgroundColor = theme.colorTextButtonSecondary
+            foregroundColor = theme.colorTextButtonSecondary
             borderColor = theme.colorBorderButtonSecondary
             
         } else if configuration.role == .destructive {
             backgroundColor = theme.colorBackgroundButtonDestructive
-            forgroundColor = theme.colorTextButtonDestructive
+            foregroundColor = theme.colorTextButtonDestructive
             borderColor = theme.colorBorderButtonDestructive
         }
         
         // Apply fancy border
         let borderStroke = configuration.isPressed ? StrokeStyle(lineWidth: 2, dash: [2]) : StrokeStyle()
         
-        // Change brighness based on enabled/disabled
+        // Change brightness based on enabled/disabled
         let brightness = enabled ? 0.0 : theme.disabledBrightness
         
         return configuration.label
             .padding(paddingOverride ?? theme.padding)
             .font(theme.fontButton)
-            .foregroundColor(forgroundColor)
+            .foregroundColor(foregroundColor)
             .background(backgroundColor)
             .cornerRadius(theme.cornerRadius)
             .overlay {
