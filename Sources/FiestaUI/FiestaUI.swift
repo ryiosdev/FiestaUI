@@ -10,13 +10,20 @@ import SwiftUI
 
 
 /// The main  struct representing the FiestaUI API
+///
+///  -Note: 
 public struct FiestaUI {
     
     /// Loads the fonts used by the FestaUI package into app memory.
     ///
     /// Call this method at app launch similar to this:
     /// ```swift
-    /// FiestaUI.loadFonts()
+    /// @main
+    /// struct FiestaSampleAppApp: App {
+    ///    init() {
+    ///        FiestaUI.loadFonts()
+    ///    }
+    /// }
     /// ```
     ///
     /// Or in swift previews like this:
@@ -37,8 +44,6 @@ public struct FiestaUI {
             }
         }
     }
-    
-    var text: String { "Hello, World!" }
 }
 
 

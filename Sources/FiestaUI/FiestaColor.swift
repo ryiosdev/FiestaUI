@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-/// An enumeration of hex color strings that belong the Fiesta Theme. 
+/// An enumeration of hex color strings that belong the Fiesta Theme.
 public enum FiestaColor: String {
     
     /// pure black (#000000)
@@ -26,6 +26,9 @@ public enum FiestaColor: String {
     
     /// "Coupon" yellow (#fcd202)
     case yellow = "#fcd202"
+    
+    /// A brightness value of ~30 % 
+    static let brightnessLow = 0.30
 }
 
 public extension Color {
@@ -39,7 +42,7 @@ public extension Color {
     }
 }
 
-/// String Extension to convert hex strings like "#dc291e" to UIColor or SwiftUI Color equivalent.
+/// String Extension to convert "color hex strings" like "#dc291e" to other color types
 public extension RawRepresentable where RawValue == String {
 
     /// Returns a SwiftUI Color struct for the string's hex value
@@ -53,7 +56,8 @@ public extension RawRepresentable where RawValue == String {
         return UIColor(red: self.red(), green: self.green(), blue: self.blue(), alpha: 0.0)
     }
     
-    private func toRGB() -> (Double, Double, Double) {
+    /// Returns a tuple of (red, green, blue) Double (0.0 - 1.0) color components for the string's hex value
+    func toRGB() -> (Double, Double, Double) {
         var red = 0.0
         var green = 0.0
         var blue = 0.0
@@ -98,6 +102,7 @@ public extension RawRepresentable where RawValue == String {
         let bitPosition = 8
         return CGFloat((self.toUInt() & (0xff << bitPosition)) >> bitPosition)  / 255.0
     }
+    
     private func blue() -> CGFloat {
         return CGFloat(self.toUInt() & 0xff)  / 255.0
     }

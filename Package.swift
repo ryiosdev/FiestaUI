@@ -24,7 +24,7 @@ let package = Package(
         .target(
             name: "FiestaUI",
             dependencies: [],
-            resources: [.process("Fonts")]
+            resources: [.process("Assets")]
         ),
         .testTarget(
             name: "FiestaUITests",
