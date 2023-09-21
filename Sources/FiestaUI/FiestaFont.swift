@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-/// An struct that features fonts that belong the Fiesta Theme.
-public struct FiestaFont {
-    static let fiesta10 = Font.custom("Fiesta", size: 10)
-    static let fiesta18 = Font.custom("Fiesta", size: 18)
+/// An enum that features fonts that belong the Fiesta Theme.
+public enum FiestaFont {
+    
+    /// fiestaSmall should be used for sub text
+    public static let fiestaSmall = Font.custom("Fiesta", size: 10)
+
+    /// fiestaStandard to be used for average size text like Buttons and Text
+    public static let fiestaStandard = Font.custom("Fiesta", size: 18)
 }
