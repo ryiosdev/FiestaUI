@@ -97,14 +97,26 @@ struct FiestaButton_Previews: PreviewProvider {
         FiestaUI.loadFonts()
         return Group {
             HStack {
-                basic
-                basic.disabled(true)
+                VStack {
+                    Text("Standard")
+                    basic
+                }
+                VStack {
+                    Text("Disabled")
+                    basic.disabled(true)
+                }
             }
             .previewDisplayName("Basic")
 
             HStack {
-                roles
-                roles.disabled(true)
+                VStack {
+                    Text("Standard")
+                    roles
+                }
+                VStack {
+                    Text("Disabled")
+                    roles.disabled(true)
+                }
             }
             .previewDisplayName("Roles")
         }
@@ -114,9 +126,9 @@ struct FiestaButton_Previews: PreviewProvider {
 
     @ViewBuilder static var basic: some View {
         VStack {
-            Button("Disabled") {}
+            Button("Basic") {}
             Button(action: {}) {
-                Label("Disabled", systemImage: "party.popper")
+                Label("Label", systemImage: "party.popper")
             }
             Button(action: {}) {
                 Image(systemName: "party.popper")
