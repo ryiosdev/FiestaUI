@@ -50,6 +50,16 @@ public protocol Theme {
     ///
     /// For use with the SwiftUI `.brightness()`view modifier
     var disabledBrightness: Double { get }
+
+    /// Scale value for button press
+    ///
+    ///  The scale to animate to when a button is pressed
+    var scaleButtonPressed: Double { get }
+
+    /// StrokeStyle for button borders
+    ///
+    /// The `StrokeStyle` to use for button borders when the button is pressed
+    var strokeStyleButtonPressed: StrokeStyle { get }
 }
 
 /// The SwiftUI Environment key to obtain a globally available Theme implementation

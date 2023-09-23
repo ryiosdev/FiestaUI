@@ -29,7 +29,8 @@ public enum FiestaColor: String {
     
     /// "Coupon" yellow (#fcd202)
     case yellow = "#fcd202"
-    
+
+    // TODO: put this in the right spot?
     /// A brightness value of ~30 % 
     static let brightnessLow = 0.30
 }
@@ -56,7 +57,8 @@ public extension RawRepresentable where RawValue == String {
 
     /// Returns a UIColor object for the string's hex value.
     func uiColor() -> UIColor {
-        return UIColor(red: self.red(), green: self.green(), blue: self.blue(), alpha: 0.0)
+        let rgb = self.toRGB()
+        return UIColor(red: rgb.0, green: rgb.1, blue: rgb.2, alpha: 0.0)
     }
     
     /// Returns a tuple of (red, green, blue) Double (0.0 - 1.0) color components for the string's hex value
@@ -84,30 +86,6 @@ public extension RawRepresentable where RawValue == String {
             blue = Double(hex) / 255.0
         }
         return (red, green, blue)
-    }
-    
-    private func toUInt() -> UInt64 {
-        var hexValue: UInt64 = 0
-        
-        let scanner = Scanner(string: String(self.rawValue.dropFirst()))
-        if scanner.scanHexInt64(&hexValue) {
-            return hexValue
-        }
-        return hexValue
-    }
-    
-    private func red() -> CGFloat {
-        let bitPosition = 16
-        return CGFloat((self.toUInt() & (0xff << bitPosition)) >> bitPosition)  / 255.0
-    }
-    
-    private func green() -> CGFloat {
-        let bitPosition = 8
-        return CGFloat((self.toUInt() & (0xff << bitPosition)) >> bitPosition)  / 255.0
-    }
-    
-    private func blue() -> CGFloat {
-        return CGFloat(self.toUInt() & 0xff)  / 255.0
     }
 }
 

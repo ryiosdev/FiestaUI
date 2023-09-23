@@ -3,7 +3,8 @@ import SwiftUI
 
 /// FestaTheme is a Theme implementation that provides "Fiesta" styling and coloring for SwiftUI components
 public struct FiestaTheme: Theme {
-    
+
+    // Colors
     public var colorBackgroundContainer: Color { Color.fiesta(FiestaColor.yellow) }
 
     public var colorBackgroundButton: Color { Color.fiesta(FiestaColor.blue) }
@@ -18,9 +19,15 @@ public struct FiestaTheme: Theme {
     public var colorBorderButtonSecondary: Color { Color.fiesta(FiestaColor.blue) }
     public var colorBorderButtonDestructive: Color { Color.fiesta(FiestaColor.red) }
 
+    // Fonts
     public var fontButton = FiestaFont.fiestaStandard
-    
+
+    // Sizes
     public var padding = FiestaSize.paddingNormal
     public var cornerRadius = FiestaSize.cornerSmall
     public var disabledBrightness = FiestaColor.brightnessLow
+
+    // Behaviors
+    public var scaleButtonPressed = FiestaBehavior.scale
+    public var strokeStyleButtonPressed = FiestaBehavior.dottedBorder
 }

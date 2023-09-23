@@ -27,18 +27,16 @@ struct ContentView: View {
             Button(action: { action() }) {
                 Label("Label", systemImage: "party.popper")
             }
-            .fiestaStyle()
             .disabled(!buttonsEnabled)
 
             Button(action: { action() }) {
                 VStack() {
                     Text("Fiesta Theme Text")
-                    Text("Overriden Font Text and Color")
+                    Text("Overridden Font Text and Color")
                         .font(.caption)
                         .foregroundColor(.indigo)
                 }
             }
-            .fiestaStyle()
             .disabled(!buttonsEnabled)
             
             Button(action: { action() }) {
@@ -54,19 +52,18 @@ struct ContentView: View {
             Button("Cancel", role: .cancel) {
                 action()
             }
-            .fiestaStyle()
             .disabled(!buttonsEnabled)
 
 
             Button("Delete", role: .destructive) {
                 action()
             }
-            .fiestaStyle()
             .disabled(!buttonsEnabled)
         }
         .padding(theme.padding)
         .background(theme.colorBackgroundContainer)
         .cornerRadius(theme.cornerRadius)
+        .fiestaButtonStyle()
 
     }
     
