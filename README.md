@@ -26,9 +26,9 @@ Button("Fiesta") {
 ```
 - Note: You can also use variations of SwiftUI Button with the `FiestaButtonStyle`. For example using `.cancel` "role" will automatically adjust the styling for a Cancel button.
 
-### Internal Festa Sample App
-Bundled inside FiestaUI swift package is a sample app named `FiestaSampleApp`. You can use this app to see the FiestaUI library in action.
-You can get to it by right clicking on the package in Xcode and select "Show in Finder".
+## Internal Festa Sample App
+Bundled inside FiestaUI repo is a sample app named `FiestaSampleApp`. You can use this app to see the FiestaUI library in action.
+You can get to it by cloning the repository with `git clone git@github.com:ryiosdev/FiestaUI.git` and opening the `FiestaUI/FiestaSampleApp` folder.
 
 ## Documentation
 The code is documented mainly conforming to the [Swift DocC](https://developer.apple.com/documentation/docc) format.
