@@ -14,10 +14,8 @@ import SwiftUI
 ///
 /// Sample usage:
 ///  ```swift
-///  FiestaButton {
-///    print("fiesta button")
-///  } content: {
-///    Text("FiestaButton")
+///  FiestaButton(print("Hi")) {
+///    Label("Fiesta Button", systemImage: "bolt")
 ///  }
 ///```
 ///
