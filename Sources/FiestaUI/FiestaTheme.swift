@@ -4,6 +4,10 @@ import SwiftUI
 /// FestaTheme is a Theme implementation that provides "Fiesta" styling and coloring for SwiftUI components
 public struct FiestaTheme: Theme {
 
+    // TODO: One option here is to pass in the `colorScheme` ("is Dark mode") @Environment var to provide context of which color to use.
+    // If that is done then the FiestaButtonStyle should also updated to not duplicate work since it also check for colorScheme at the
+    // component level.
+    
     // Colors
     public var colorBackgroundContainer: Color { Color.fiesta(FiestaColor.yellow) }
 

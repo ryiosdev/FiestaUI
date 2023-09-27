@@ -12,7 +12,8 @@ struct ContentView: View {
     @Environment(\.theme) public var theme: Theme
     
     @State var buttonsEnabled = true
-    
+    @State var orderText = "Place Order"
+    @State var isLoading = false
     var body: some View {
         VStack(spacing: theme.padding) {
             Toggle("Enable Buttons", isOn: $buttonsEnabled)
@@ -59,6 +60,24 @@ struct ContentView: View {
                 action()
             }
             .disabled(!buttonsEnabled)
+            
+            HStack {
+                if isLoading {
+                    ProgressView()
+                }
+                Button(orderText) {
+                    Task {
+                        isLoading = true
+                        await placeOrder()
+                        isLoading = false
+                    }
+                }
+            }
+            
+            FiestaButton(print("hi")) {
+                Label("Fiesta Button", systemImage: "party.popper")
+            }
+
         }
         .padding(theme.padding)
         .background(theme.colorBackgroundContainer)
@@ -70,6 +89,35 @@ struct ContentView: View {
     func action() {
         print("Here, Everyone Belongs!")
     }
+    
+    func placeOrder() async {
+        
+        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
+            print("invalid url")
+            return
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let model = try JSONDecoder().decode(Model.self, from: data)
+            print("result count : \(model.resultCount)")
+            orderText = "Ordered \(model.resultCount)"
+            
+        } catch {
+            print("request failed")
+        }
+    }
+    
+}
+
+struct Model: Codable {
+    var resultCount: Int
+    var results: [Result]
+}
+
+struct Result: Codable {
+    var trackId: Int
+    var trackName: String
+    var collectionName: String
 }
 
 struct ContentView_Previews: PreviewProvider {

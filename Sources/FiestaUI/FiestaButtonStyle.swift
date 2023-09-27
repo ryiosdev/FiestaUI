@@ -28,6 +28,10 @@ import SwiftUI
 ///    Image("SwiftUI")
 /// }.buttonStyle(FiestaButtonStyle(padding: 0.0))
 ///```
+///
+/// See also the SwiftUI previews in `FiestaButtonStyle.swift` in the `FiestaUI` swift package to see more examples of usage.
+///
+/// > Important:  The  ``FiestaUI/FiestaUI/loadFonts()`` must be called around app launch to see the custom fonts within this component.
 public struct FiestaButtonStyle: ButtonStyle {
     @Environment(\.theme) private var theme: Theme
     @Environment(\.isEnabled) private var enabled: Bool
@@ -92,7 +96,10 @@ public extension View {
     }
 }
 
-struct FiestaButton_Previews: PreviewProvider {
+struct FiestaButtonStyle_Previews: PreviewProvider {
+    @Environment(\.theme) static var theme
+    @Environment(\.colorScheme) static var scheme
+
     static var previews: some View {
         FiestaUI.loadFonts()
         return Group {
@@ -119,7 +126,17 @@ struct FiestaButton_Previews: PreviewProvider {
                 }
             }
             .previewDisplayName("Roles")
+            HStack {
+                VStack {
+                    Text("Standard SwiftUI Button with custom content")
+                    custom
+                }
+            }
+            
         }
+        .padding(theme.padding)
+        .background(Color.fiesta(.yellow))
+        .cornerRadius(theme.cornerRadius)
         .previewLayout(.sizeThatFits)
         .fiestaButtonStyle()
     }
@@ -146,6 +163,30 @@ struct FiestaButton_Previews: PreviewProvider {
         VStack {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) { }
+        }
+    }
+    
+    @ViewBuilder static var custom: some View {
+        VStack {
+            Button(action: {}) {
+                VStack() {
+                    Text("Theme Font")
+                    Text("Overridden Font Text and Color in same Button")
+                        .font(.caption)
+                        .foregroundColor(.indigo)
+                }
+            }
+            Button(action: {}) {
+                Image("heb",
+                      bundle:.module,
+                      label: Text("Custom image with overridden FestaButtonStyle padding"))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 50.0)
+                    .background(Color.fiesta(.red))
+            }
+            .buttonStyle(FiestaButtonStyle(padding: 0.0))
+            
         }
     }
 }
