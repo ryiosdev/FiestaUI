@@ -35,6 +35,7 @@ struct ContentView: View {
                     }
                 }
 
+#if canImport(UIKit)
                 Button(action: { action() }) {
                     Image(uiImage: FiestaUI.loadImage("atm")!)
                         .resizable()
@@ -43,6 +44,7 @@ struct ContentView: View {
                         .background(Color.fiesta(.white))
                 }
                 .buttonStyle(FiestaButtonStyle(padding: 0.0))
+#endif
 
                 Button("Cancel", role: .cancel) {
                     action()
@@ -71,7 +73,6 @@ struct ContentView: View {
                 }
 
             }
-            .listRowSpacing(theme.padding)
             .cornerRadius(theme.cornerRadius)
             .disabled(!buttonsEnabled)
             .fiestaButtonStyle()
