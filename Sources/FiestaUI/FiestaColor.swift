@@ -6,8 +6,10 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 public extension Color {
     /// A helper method to quickly add a FiestaColor to a SwiftUI Views
@@ -42,7 +44,10 @@ public enum FiestaColor: String {
 public protocol ColorConvertable {
     func toRGB() -> (r: Double, g: Double, b: Double)
     func toColor() -> Color
+
+    #if canImport(UIKit)
     func toUIColor() -> UIColor
+    #endif
 }
 
 extension FiestaColor: ColorConvertable {
@@ -78,12 +83,13 @@ extension FiestaColor: ColorConvertable {
         let rgb = self.toRGB()
         return Color(red: rgb.r, green: rgb.g, blue: rgb.b)
     }
-
+    #if canImport(UIKit)
     /// Returns a UIColor object for the string's hex value.
     public func toUIColor() -> UIColor {
         let rgb = self.toRGB()
         return UIColor(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: 0.0)
     }
+    #endif
 }
 
 

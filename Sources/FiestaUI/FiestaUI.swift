@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 
 /// The main  struct representing the FiestaUI API
@@ -44,9 +47,10 @@ public struct FiestaUI {
             }
         }
     }
-
+    #if canImport(UIKit)
     public static func loadImage(_ name: String) -> UIImage? {
         return UIImage(named: name, in: Bundle.module, compatibleWith: nil)
     }
+    #endif
 }
 

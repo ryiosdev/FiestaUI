@@ -1,4 +1,3 @@
-import UIKit
 import SwiftUI
 
 /// FestaTheme is a Theme implementation that provides "Fiesta" styling and coloring for SwiftUI components
