@@ -44,6 +44,9 @@ public struct FiestaUI {
             }
         }
     }
-}
 
+    public static func loadImage(_ name: String) -> UIImage? {
+        return UIImage(named: name, in: Bundle.module, compatibleWith: nil)
+    }
+}
 

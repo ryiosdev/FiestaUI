@@ -177,13 +177,13 @@ struct FiestaButtonStyle_Previews: PreviewProvider {
                 }
             }
             Button(action: {}) {
-                Image("heb",
+                Image("atm",
                       bundle:.module,
                       label: Text("Custom image with overridden FestaButtonStyle padding"))
                     .resizable()
                     .scaledToFit()
                     .frame(height: 50.0)
-                    .background(Color.fiesta(.red))
+                    .background(Color.fiesta(.white))
             }
             .buttonStyle(FiestaButtonStyle(padding: 0.0))
             

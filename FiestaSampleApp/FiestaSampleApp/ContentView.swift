@@ -10,88 +10,84 @@ import FiestaUI
 
 struct ContentView: View {
     @Environment(\.theme) public var theme: Theme
-    
+
     @State var buttonsEnabled = true
     @State var orderText = "Place Order"
     @State var isLoading = false
     var body: some View {
-        VStack(spacing: theme.padding) {
-            Toggle("Enable Buttons", isOn: $buttonsEnabled)
-                .font(FiestaFont.fiestaSmall)
-            
-            Button("Fiesta") {
-                action()
-            }
-            .buttonStyle(FiestaButtonStyle())
-            .disabled(!buttonsEnabled)
-
-            Button(action: { action() }) {
-                Label("Label", systemImage: "party.popper")
-            }
-            .disabled(!buttonsEnabled)
-
-            Button(action: { action() }) {
-                VStack() {
-                    Text("Fiesta Theme Text")
-                    Text("Overridden Font Text and Color")
-                        .font(.caption)
-                        .foregroundColor(.indigo)
+        NavigationStack {
+            List {
+                Button("Fiesta") {
+                    action()
                 }
-            }
-            .disabled(!buttonsEnabled)
-            
-            Button(action: { action() }) {
-                Image("heb")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 50.0)
-                    .background(Color.fiesta(.red))
-            }
-            .buttonStyle(FiestaButtonStyle(padding: 0.0))
-            .disabled(!buttonsEnabled)
+                .buttonStyle(FiestaButtonStyle())
 
-            Button("Cancel", role: .cancel) {
-                action()
-            }
-            .disabled(!buttonsEnabled)
-
-
-            Button("Delete", role: .destructive) {
-                action()
-            }
-            .disabled(!buttonsEnabled)
-            
-            HStack {
-                if isLoading {
-                    ProgressView()
+                Button(action: { action() }) {
+                    Label("Label", systemImage: "party.popper")
                 }
-                Button(orderText) {
-                    Task {
-                        isLoading = true
-                        await placeOrder()
-                        isLoading = false
+
+                Button(action: { action() }) {
+                    VStack() {
+                        Text("Fiesta Theme Text")
+                        Text("Overridden Font Text and Color")
+                            .font(.caption)
+                            .foregroundColor(.indigo)
                     }
                 }
-            }
-            
-            FiestaButton(print("hi")) {
-                Label("Fiesta Button", systemImage: "party.popper")
-            }
 
+                Button(action: { action() }) {
+                    Image(uiImage: FiestaUI.loadImage("atm")!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50.0)
+                        .background(Color.fiesta(.white))
+                }
+                .buttonStyle(FiestaButtonStyle(padding: 0.0))
+
+                Button("Cancel", role: .cancel) {
+                    action()
+                }
+
+
+                Button("Delete", role: .destructive) {
+                    action()
+                }
+
+                HStack {
+                    if isLoading {
+                        ProgressView()
+                    }
+                    Button(orderText) {
+                        Task {
+                            isLoading = true
+                            await placeOrder()
+                            isLoading = false
+                        }
+                    }
+                }
+
+                FiestaButton(print("hi")) {
+                    Label("Fiesta Button", systemImage: "party.popper")
+                }
+
+            }
+            .listRowSpacing(theme.padding)
+            .cornerRadius(theme.cornerRadius)
+            .disabled(!buttonsEnabled)
+            .fiestaButtonStyle()
+            .toolbar {
+                Toggle("Enable Buttons", isOn: $buttonsEnabled)
+                    .font(FiestaFont.fiestaSmall)
+            }
         }
-        .padding(theme.padding)
-        .background(theme.colorBackgroundContainer)
-        .cornerRadius(theme.cornerRadius)
-        .fiestaButtonStyle()
+    }
 
-    }
-    
     func action() {
-        print("Here, Everyone Belongs!")
+        print("SwiftUI!")
     }
-    
+
     func placeOrder() async {
-        
+
         guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
             print("invalid url")
             return
@@ -101,12 +97,11 @@ struct ContentView: View {
             let model = try JSONDecoder().decode(Model.self, from: data)
             print("result count : \(model.resultCount)")
             orderText = "Ordered \(model.resultCount)"
-            
+
         } catch {
             print("request failed")
         }
     }
-    
 }
 
 struct Model: Codable {

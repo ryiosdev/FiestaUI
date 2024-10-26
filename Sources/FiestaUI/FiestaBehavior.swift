@@ -14,4 +14,7 @@ public enum FiestaBehavior {
 
     /// Applies a dotted line stroke, for use with rounded rectangles and buttons
     public static let dottedBorder = StrokeStyle(lineWidth: 2, dash: [2])
+
+    /// A brightness value of ~30 %
+    public static let brightnessLow = 0.30
 }

@@ -29,9 +29,9 @@ public struct FiestaTheme: Theme {
     // Sizes
     public var padding = FiestaSize.paddingNormal
     public var cornerRadius = FiestaSize.cornerSmall
-    public var disabledBrightness = FiestaColor.brightnessLow
 
     // Behaviors
     public var scaleButtonPressed = FiestaBehavior.scale
     public var strokeStyleButtonPressed = FiestaBehavior.dottedBorder
+    public var disabledBrightness = FiestaBehavior.brightnessLow
 }

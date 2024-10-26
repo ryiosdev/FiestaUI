@@ -18,21 +18,17 @@ public enum FiestaColor: String {
     /// pure black (#000000)
     case black = "#000000"
     
-    /// "Favor" blue (#3c98df)
+    ///  blue (#3c98df)
     case blue = "#3c98df"
     
-    /// "HEB" red (#dc291e)
+    ///  red (#dc291e)
     case red = "#dc291e"
     
     /// pure white (#ffffff)
     case white = "#ffffff"
     
-    /// "Coupon" yellow (#fcd202)
+    ///  yellow (#fcd202)
     case yellow = "#fcd202"
-
-    // TODO: put this in the right spot?
-    /// A brightness value of ~30 % 
-    static let brightnessLow = 0.30
 }
 
 public extension Color {
