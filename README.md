@@ -1,5 +1,5 @@
 # FiestaUI
-A SwiftUI Component Library with a Texas Flare
+A SwiftUI Component Library with a Texas Flair
 - Note: Currently the only custom SwiftUI component available is `FiestaButtonStyle` which allows applying the "FiestaTheme" to _any_ SwiftUI Button.
 
 ## Getting Started
