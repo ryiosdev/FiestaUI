@@ -9,28 +9,6 @@ import Foundation
 import UIKit
 import SwiftUI
 
-/// An enumeration of hex color strings that belong the Fiesta Theme.
-public enum FiestaColor: String {
-    
-    // NOTE: An alternative option for a list of "theme colors" is using an Asset Catalog with "Color Sets" which support light/dark mode.
-    // I did not use that here because, I simply forgot that was a thing 😅 and ran with this instead.
-    
-    /// pure black (#000000)
-    case black = "#000000"
-    
-    ///  blue (#3c98df)
-    case blue = "#3c98df"
-    
-    ///  red (#dc291e)
-    case red = "#dc291e"
-    
-    /// pure white (#ffffff)
-    case white = "#ffffff"
-    
-    ///  yellow (#fcd202)
-    case yellow = "#fcd202"
-}
-
 public extension Color {
     /// A helper method to quickly add a FiestaColor to a SwiftUI Views
     ///
@@ -38,27 +16,38 @@ public extension Color {
     /// - Parameter color: The FiestaColor to convert to a Color struct
     /// - Returns: A Color struct representing the FiestaColor
     static func fiesta(_ color: FiestaColor) -> Color {
-        return color.color()
+        return color.toColor()
     }
 }
 
-/// String Extension to convert "color hex strings" like "#dc291e" to other color types
-public extension RawRepresentable where RawValue == String {
+/// An enumeration of hex color strings that belong the Fiesta Theme.
+public enum FiestaColor: String {
+    /// pure black (#000000)
+    case black = "#000000"
 
-    /// Returns a SwiftUI Color struct for the string's hex value
-    func color() -> Color {
-        let rgb = self.toRGB()
-        return Color(red: rgb.0, green: rgb.1, blue: rgb.2)
-    }
+    ///  blue (#3c98df)
+    case blue = "#3c98df"
 
-    /// Returns a UIColor object for the string's hex value.
-    func uiColor() -> UIColor {
-        let rgb = self.toRGB()
-        return UIColor(red: rgb.0, green: rgb.1, blue: rgb.2, alpha: 0.0)
-    }
-    
+    ///  red (#dc291e)
+    case red = "#dc291e"
+
+    /// pure white (#ffffff)
+    case white = "#ffffff"
+
+    ///  yellow (#fcd202)
+    case yellow = "#fcd202"
+}
+
+/// A type that can be converted to a tuple of RGB values, Color Struct, and UIColor Class
+public protocol ColorConvertable {
+    func toRGB() -> (r: Double, g: Double, b: Double)
+    func toColor() -> Color
+    func toUIColor() -> UIColor
+}
+
+extension FiestaColor: ColorConvertable {
     /// Returns a tuple of (red, green, blue) Double (0.0 - 1.0) color components for the string's hex value
-    func toRGB() -> (Double, Double, Double) {
+    public func toRGB() -> (r: Double, g: Double, b: Double) {
         var red = 0.0
         var green = 0.0
         var blue = 0.0
@@ -68,7 +57,7 @@ public extension RawRepresentable where RawValue == String {
 
         //drop the `#`
         let dropHash = String(self.rawValue.dropFirst())
-    
+
         //scan the first two hex character for red
         if Scanner(string: String(dropHash.dropLast(4))).scanHexInt64(&hex) {
             red = Double(hex) / 255.0
@@ -81,7 +70,19 @@ public extension RawRepresentable where RawValue == String {
         if Scanner(string: String(dropHash.dropFirst(4))).scanHexInt64(&hex) {
             blue = Double(hex) / 255.0
         }
-        return (red, green, blue)
+        return (r: red, g: green, b: blue)
+    }
+
+    /// Returns a SwiftUI Color struct for the string's hex value
+    public func toColor() -> Color {
+        let rgb = self.toRGB()
+        return Color(red: rgb.r, green: rgb.g, blue: rgb.b)
+    }
+
+    /// Returns a UIColor object for the string's hex value.
+    public func toUIColor() -> UIColor {
+        let rgb = self.toRGB()
+        return UIColor(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: 0.0)
     }
 }
 
